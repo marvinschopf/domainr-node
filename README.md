@@ -1,6 +1,6 @@
 # domainr-node
 
-`domainr-node` is a [Domainr](https://domainr.com) API client written for Nodethat fully supports both the standard and enterprise versions.
+`domainr-node` is a [Domainr](https://domainr.com) API client written for Node that fully supports both the standard and enterprise versions.
 
 ## Installation
 
