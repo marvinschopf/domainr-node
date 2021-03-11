@@ -33,6 +33,12 @@
 		"style:check": "prettier --check **/*.ts **/*.json **/*.md .github/",
 		"test": "TS_NODE_PROJECT=tsconfig-cjs.json ava"
 	},
+	"files": [
+		"dist/",
+		"package.json",
+		"README.md",
+		"LICENSE"
+	],
 	"prettier": {
 		"useTabs": true,
 		"semi": true,
