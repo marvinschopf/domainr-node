@@ -28,11 +28,9 @@ import { DomainrClient } from "./../src/index";
 function randomString(length: number): string {
 	let result: string = "";
 	for (let i: number = 0; i < length; i++) {
-		result += "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'".charAt(
+		result += "abcdefghijklmnopqrstuvwxyz0123456789".charAt(
 			Math.floor(
-				Math.random() *
-					"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-						.length
+				Math.random() * "abcdefghijklmnopqrstuvwxyz0123456789".length
 			)
 		);
 	}
@@ -45,8 +43,12 @@ const DOMAINR_API_KEY: string = process.env.DOMAINR_API_KEY
 
 const client: DomainrClient = new DomainrClient(DOMAINR_API_KEY);
 
+test("init without key", async (t) => {
+	t.throwsAsync(new DomainrClient("").status("google.com"));
+});
+
 test("search pizza", async (t) => {
-	t.is((await client.search("pizza")).length, 5);
+	t.is((await client.search("pizza")).length >= 5, true);
 	t.not(await client.search("pizza"), null);
 });
 
