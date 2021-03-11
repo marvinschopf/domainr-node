@@ -62,15 +62,33 @@ test("status google.de", async (t) => {
 	]);
 });
 
-test("register random 1", async (t) => {
+test("register random", async (t) => {
+	t.is(isURL(await client.register(`${randomString(128)}.net`)), true);
+	t.is(isURL(await client.register(`${randomString(128)}.net`)), true);
 	t.is(isURL(await client.register(`${randomString(128)}.net`)), true);
 });
 
-test("status random 1", async (t) => {
-	const RANDOM_STRING: string = randomString(128);
-	t.is(await client.status(`${RANDOM_STRING}.net`), [
+test("status random", async (t) => {
+	const RANDOM_STRING_1: string = randomString(128);
+	t.is(await client.status(`${RANDOM_STRING_1}.net`), [
 		{
-			domain: `${RANDOM_STRING}.net`,
+			domain: `${RANDOM_STRING_1}.net`,
+			zone: "net",
+			status: ["undelegated", "inactive"],
+		},
+	]);
+	const RANDOM_STRING_2: string = randomString(128);
+	t.is(await client.status(`${RANDOM_STRING_2}.net`), [
+		{
+			domain: `${RANDOM_STRING_2}.net`,
+			zone: "net",
+			status: ["undelegated", "inactive"],
+		},
+	]);
+	const RANDOM_STRING_3: string = randomString(128);
+	t.is(await client.status(`${RANDOM_STRING_3}.net`), [
+		{
+			domain: `${RANDOM_STRING_3}.net`,
 			zone: "net",
 			status: ["undelegated", "inactive"],
 		},
