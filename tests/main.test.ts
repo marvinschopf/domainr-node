@@ -73,7 +73,7 @@ test("register random", async (t) => {
 });
 
 test("status random", async (t) => {
-	const RANDOM_STRING_1: string = randomString(64);
+	const RANDOM_STRING_1: string = randomString(24);
 	t.deepEqual(await client.status(`${RANDOM_STRING_1}.net`), [
 		{
 			domain: `${RANDOM_STRING_1}.net`,
@@ -81,7 +81,7 @@ test("status random", async (t) => {
 			status: ["undelegated", "inactive"],
 		},
 	]);
-	const RANDOM_STRING_2: string = randomString(64);
+	const RANDOM_STRING_2: string = randomString(24);
 	t.deepEqual(await client.status(`${RANDOM_STRING_2}.net`), [
 		{
 			domain: `${RANDOM_STRING_2}.net`,
@@ -89,7 +89,7 @@ test("status random", async (t) => {
 			status: ["undelegated", "inactive"],
 		},
 	]);
-	const RANDOM_STRING_3: string = randomString(64);
+	const RANDOM_STRING_3: string = randomString(24);
 	t.deepEqual(await client.status(`${RANDOM_STRING_3}.net`), [
 		{
 			domain: `${RANDOM_STRING_3}.net`,
