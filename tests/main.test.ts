@@ -23,7 +23,7 @@
 import test from "ava";
 import isURL from "validator/lib/isURL";
 
-const { DomainrClient } = require("./../dist/cjs");
+import { DomainrClient } from "./../src/index";
 
 function randomString(length: number): string {
 	let result: string = "";
