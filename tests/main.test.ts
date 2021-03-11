@@ -51,13 +51,13 @@ test("search pizza", async (t) => {
 });
 
 test("status pizza.com", async (t) => {
-	t.is(await client.status("pizza.com"), [
+	t.deepEqual(await client.status("pizza.com"), [
 		{ domain: "pizza.com", zone: "com", status: ["active"] },
 	]);
 });
 
 test("status google.de", async (t) => {
-	t.is(await client.status("google.de"), [
+	t.deepEqual(await client.status("google.de"), [
 		{ domain: "google.de", zone: "de", status: ["active"] },
 	]);
 });
@@ -70,7 +70,7 @@ test("register random", async (t) => {
 
 test("status random", async (t) => {
 	const RANDOM_STRING_1: string = randomString(128);
-	t.is(await client.status(`${RANDOM_STRING_1}.net`), [
+	t.deepEqual(await client.status(`${RANDOM_STRING_1}.net`), [
 		{
 			domain: `${RANDOM_STRING_1}.net`,
 			zone: "net",
@@ -78,7 +78,7 @@ test("status random", async (t) => {
 		},
 	]);
 	const RANDOM_STRING_2: string = randomString(128);
-	t.is(await client.status(`${RANDOM_STRING_2}.net`), [
+	t.deepEqual(await client.status(`${RANDOM_STRING_2}.net`), [
 		{
 			domain: `${RANDOM_STRING_2}.net`,
 			zone: "net",
@@ -86,7 +86,7 @@ test("status random", async (t) => {
 		},
 	]);
 	const RANDOM_STRING_3: string = randomString(128);
-	t.is(await client.status(`${RANDOM_STRING_3}.net`), [
+	t.deepEqual(await client.status(`${RANDOM_STRING_3}.net`), [
 		{
 			domain: `${RANDOM_STRING_3}.net`,
 			zone: "net",
