@@ -29,8 +29,8 @@
 	},
 	"scripts": {
 		"build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-		"style:fix": "prettier --write **/*.ts **/*.json **/*.md",
-		"style:check": "prettier --check **/*.ts **/*.json **/*.md",
+		"style:fix": "prettier --write **/*.ts **/*.json **/*.md .github/",
+		"style:check": "prettier --check **/*.ts **/*.json **/*.md .github/",
 		"test": "ava"
 	},
 	"prettier": {
