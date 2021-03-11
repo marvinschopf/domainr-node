@@ -43,12 +43,6 @@ const DOMAINR_API_KEY: string = process.env.DOMAINR_API_KEY
 
 const client: DomainrClient = new DomainrClient(DOMAINR_API_KEY);
 
-test("init without key", async (t) => {
-	t.throws(await (async () => {
-		await new DomainrClient("").status("google.com");
-	}));
-});
-
 test("search pizza", async (t) => {
 	t.is((await client.search("pizza")).length >= 5, true);
 	t.not(await client.search("pizza"), null);
