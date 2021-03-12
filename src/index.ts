@@ -43,15 +43,36 @@ async function asyncForEach(array: any, callback: Function): Promise<void> {
 	}
 }
 
+export type DomainrOptions = {
+	endpoint?: "standard" | "enterprise";
+};
+
+export type DomainrSearchOptions = {
+	location?: string;
+	registrar?: string;
+	defaults?: string[];
+	keywords?: string[];
+};
+
+export type DomainrStatusResponse = {
+	domain: string;
+	zone: string;
+	status: string[];
+};
+
+export type DomainrSearchResponse = {
+	domain: string;
+	host: string;
+	subdomain: string;
+	zone: string;
+	path: string;
+	registerURL: string;
+};
+
 export class DomainrClient {
 	apiKey: string;
 	endpoint: "standard" | "enterprise";
-	constructor(
-		apiKey: string,
-		options?: {
-			endpoint?: "standard" | "enterprise";
-		}
-	) {
+	constructor(apiKey: string, options?: DomainrOptions) {
 		this.apiKey = apiKey;
 		this.endpoint = options
 			? options.endpoint
@@ -94,15 +115,7 @@ export class DomainrClient {
 		}
 	}
 
-	public async status(
-		domain: string
-	): Promise<
-		{
-			domain: string;
-			zone: string;
-			status: string[];
-		}[]
-	> {
+	public async status(domain: string): Promise<DomainrStatusResponse[]> {
 		const response = await fetch(
 			`${apiBaseUrls[this.endpoint]}/v2/status?${
 				this.endpoint === "enterprise" ? "client_id" : "mashape-key"
@@ -143,22 +156,8 @@ export class DomainrClient {
 
 	public async search(
 		query: string,
-		options?: {
-			location?: string;
-			registrar?: string;
-			defaults?: string[];
-			keywords?: string[];
-		}
-	): Promise<
-		{
-			domain: string;
-			host: string;
-			subdomain: string;
-			zone: string;
-			path: string;
-			registerURL: string;
-		}[]
-	> {
+		options?: DomainrSearchOptions
+	): Promise<DomainrSearchResponse[]> {
 		const response = await fetch(
 			`${apiBaseUrls[this.endpoint]}/v2/search?${buildQueryString({
 				"mashape-key":
